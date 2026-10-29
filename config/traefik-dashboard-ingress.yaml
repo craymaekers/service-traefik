@@ -1,0 +1,40 @@
+# HTTP Route: Vangt verkeer op poort 80 op en stuurt het door naar HTTPS
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard-http
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`proxy.services.raymaekers.net`) || Host(`10.1.139.2`)
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+      middlewares:
+        - name: redirect-to-https
+
+---
+# HTTPS Route: Beveiligde toegang via poort 443 met SSL-certificaat
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard-https
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "services-issuer"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`proxy.services.raymaekers.net`) || Host(`10.1.139.2`)
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: proxy-services-raymaekers-tls
+    domains:
+      - main: proxy.services.raymaekers.net
