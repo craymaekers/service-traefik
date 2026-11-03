@@ -10,7 +10,7 @@ helmCharts:
     includeCRDs: true
     valuesInline:
       service:
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
         annotations:
           metallb.universe.tf/loadBalancerIPs: "10.1.130.2"
         deployment:
