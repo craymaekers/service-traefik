@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: proxy-services-raymaekers-cert
+  namespace: traefik
+spec:
+  secretName: proxy-services-raymaekers-tls
+  issuerRef:
+    name: services-issuer
+    kind: ClusterIssuer
+  commonName: proxy.services.raymaekers.net
+  dnsNames:
+    - proxy.services.raymaekers.net

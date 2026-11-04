@@ -29,12 +29,10 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`proxy.services.raymaekers.net`) || Host(`10.1.139.2`)
+    - match: Host(`proxy.services.raymaekers.net`)
       kind: Rule
       services:
         - name: api@internal
           kind: TraefikService
   tls:
     secretName: proxy-services-raymaekers-tls
-    domains:
-      - main: proxy.services.raymaekers.net
