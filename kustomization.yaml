@@ -17,5 +17,6 @@ helmCharts:
           hostNetwork: false
 
 resources:
+  - config/certificate.yaml
   - config/traefik-dashboard-ingress.yaml
   - config/redirect-middleware.yaml
