@@ -23,8 +23,6 @@ kind: IngressRoute
 metadata:
   name: traefik-dashboard-https
   namespace: traefik
-  annotations:
-    cert-manager.io/cluster-issuer: "services-issuer"
 spec:
   entryPoints:
     - websecure
