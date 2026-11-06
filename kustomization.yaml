@@ -8,8 +8,22 @@ helmCharts:
     releaseName: traefik
     namespace: traefik
     includeCRDs: true
-    valuesFiles:
-      - config/values.yaml
+    valuesInline:
+      providers:
+        kubernetesCRD:
+          enabled: true
+          allowExternalNameServices: true
+          allowCrossNamespace: true 
+        kubernetesIngress:
+          enabled: true
+          allowExternalNameServices: true
+          allowCrossNamespace: true
+      service:
+        externalTrafficPolicy: Cluster
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "10.1.130.2"
+      deployment:
+        hostNetwork: false
 
 resources:
   - config/certificate.yaml
