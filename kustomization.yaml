@@ -8,7 +8,7 @@ helmCharts:
     releaseName: traefik
     namespace: traefik
     includeCRDs: true
-    valuesFiles:
+    valueFiles:
       - config/values.yaml
 
 resources:
