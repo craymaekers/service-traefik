@@ -4,7 +4,7 @@ metadata:
   name: proxy-services-raymaekers-cert
   namespace: traefik
 spec:
-  secretName: proxy-services-raymaekers-tls
+  secretName: service-proxy-cert
   issuerRef:
     name: services-issuer
     kind: ClusterIssuer

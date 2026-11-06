@@ -33,4 +33,4 @@ spec:
         - name: api@internal
           kind: TraefikService
   tls:
-    secretName: proxy-services-raymaekers-tls
+    secretName: service-proxy-cert
