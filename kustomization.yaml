@@ -11,9 +11,13 @@ helmCharts:
     valuesInline:
       providers:
         kubernetesCRD:
+          enabled: true
           allowExternalNameServices: true
+          allowCrossNamespace: true 
         kubernetesIngress:
+          enabled: true
           allowExternalNameServices: true
+          allowCrossNamespace: true
       service:
         externalTrafficPolicy: Cluster
         annotations:
