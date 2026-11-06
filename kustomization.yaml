@@ -9,12 +9,17 @@ helmCharts:
     namespace: traefik
     includeCRDs: true
     valuesInline:
+      providers:
+        kubernetesCRD:
+          allowExternalNameServices: true
+        kubernetesIngress:
+          allowExternalNameServices: true
       service:
         externalTrafficPolicy: Cluster
         annotations:
           metallb.universe.tf/loadBalancerIPs: "10.1.130.2"
-        deployment:
-          hostNetwork: false
+      deployment:
+        hostNetwork: false
 
 resources:
   - config/certificate.yaml
